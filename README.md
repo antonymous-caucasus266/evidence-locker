@@ -1,6 +1,18 @@
 # Evidence Locker
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-43853D?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+
 A content-addressed evidence storage and integrity service designed for carbon credit verification systems. The Evidence Locker provides secure, immutable storage for evidence files with cryptographic integrity guarantees.
+
+## 🔗 Repository
+
+- **GitHub**: [https://github.com/ShantanuVr/evidence-locker](https://github.com/ShantanuVr/evidence-locker)
+- **Issues**: [Report bugs or request features](https://github.com/ShantanuVr/evidence-locker/issues)
+- **Discussions**: [Community discussions](https://github.com/ShantanuVr/evidence-locker/discussions)
 
 ## Features
 
@@ -37,7 +49,7 @@ The Evidence Locker consists of:
 
 1. **Clone and setup**:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ShantanuVr/evidence-locker.git
    cd evidence-locker
    ```
 
@@ -523,15 +535,52 @@ MIT License - see LICENSE file for details.
 
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+We welcome contributions! Please follow these steps:
+
+1. **Fork the repository** on GitHub
+2. **Clone your fork** locally:
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/evidence-locker.git
+   cd evidence-locker
+   ```
+3. **Create a feature branch**:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. **Make your changes** and add tests
+5. **Commit your changes**:
+   ```bash
+   git commit -m "Add your feature description"
+   ```
+6. **Push to your fork**:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+7. **Submit a pull request** on GitHub
+
+### Development Guidelines
+
+- Follow TypeScript best practices
+- Add tests for new features
+- Update documentation as needed
+- Follow the existing code style
+- Ensure all tests pass before submitting
 
 ## Support
 
 For issues and questions:
-- Create an issue in the repository
-- Check the troubleshooting section
-- Review the API documentation
+
+- 🐛 **Bug Reports**: [Create an issue](https://github.com/ShantanuVr/evidence-locker/issues)
+- 💡 **Feature Requests**: [Start a discussion](https://github.com/ShantanuVr/evidence-locker/discussions)
+- 📖 **Documentation**: Check this README and API documentation
+- 🔧 **Troubleshooting**: See the troubleshooting section above
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Built for carbon credit verification systems
+- Inspired by content-addressed storage principles
+- Uses industry-standard cryptographic practices
