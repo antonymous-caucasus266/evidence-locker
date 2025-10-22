@@ -1,0 +1,30 @@
+# Sample Evidence Document
+
+This is a sample PDF document for testing the Evidence Locker service.
+
+## Document Information
+- **Type**: Carbon Credit Evidence
+- **Project ID**: demo-project-123
+- **Issuance ID**: demo-issuance-456
+- **Created**: 2024-01-01
+- **Size**: ~1KB
+
+## Content
+This document contains sample evidence data for carbon credit verification. It includes:
+
+1. Project details
+2. Emission reduction calculations
+3. Verification methodology
+4. Supporting documentation
+
+## Usage
+This file is used by the demo script (`scripts/demo-upload.sh`) to test the complete upload flow of the Evidence Locker service.
+
+## Hash Information
+- **SHA-256**: Will be computed during upload
+- **MIME Type**: application/pdf
+- **Content**: Static text content for testing
+
+---
+
+*This is a test document created for demonstration purposes only.*

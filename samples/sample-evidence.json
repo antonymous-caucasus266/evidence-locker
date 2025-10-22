@@ -1,0 +1,25 @@
+{
+  "documentType": "carbon-credit-evidence",
+  "projectId": "demo-project-123",
+  "issuanceId": "demo-issuance-456",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "metadata": {
+    "title": "Sample Carbon Credit Evidence",
+    "description": "Test document for Evidence Locker service",
+    "version": "1.0",
+    "author": "Demo System"
+  },
+  "content": {
+    "emissionReduction": {
+      "baseline": 1000,
+      "actual": 800,
+      "reduction": 200,
+      "unit": "tCO2e"
+    },
+    "verification": {
+      "methodology": "ISO 14064-2",
+      "verifier": "Demo Verifier",
+      "date": "2024-01-01"
+    }
+  }
+}

@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Artifact {
+  id            String   @id @default(cuid())
+  sha256Hex     String   @unique           // canonical lowercase hex (no 0x)
+  sizeBytes     Int
+  mime          String
+  filename      String
+  bucketKey     String                    // e.g., "sha256/aa/bb/<hash>"
+  cidV1         String?                   // optional IPFS CID (base32)
+  uploaderOrgId String?
+  uploaderSub   String?                   // user sub from JWT if present
+  projectId     String?                   // registry context (optional)
+  issuanceId    String?                   // registry context (optional)
+  createdAt     DateTime @default(now())
+  verifiedAt    DateTime?
+  scanStatus    ScanStatus @default(CLEAN)
+  metaJson      Json?
+
+  @@index([projectId])
+  @@index([issuanceId])
+  @@index([createdAt])
+  @@map("artifacts")
+}
+
+enum ScanStatus { 
+  CLEAN 
+  SUSPECT 
+  SKIPPED 
+}
+
+model UploadSession {
+  id            String   @id @default(cuid())
+  sha256Hex     String?                    // client-declared planned hash (optional, for pre-commit verify)
+  filename      String
+  expectedSize  Int?
+  mimeHint      String?
+  uploaderOrgId String?
+  uploaderSub   String?
+  token         String   @unique           // single-use or TTL-limited token to PUT bytes
+  bucketKey     String?                    // assigned destination object key
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+  completedAt   DateTime?
+  status        UploadStatus @default(PENDING)
+
+  @@index([token])
+  @@index([expiresAt])
+  @@index([status])
+  @@map("upload_sessions")
+}
+
+enum UploadStatus { 
+  PENDING 
+  UPLOADING 
+  COMPLETE 
+  ABORTED 
+  EXPIRED 
+}

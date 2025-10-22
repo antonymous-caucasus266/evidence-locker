@@ -1,0 +1,129 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: evidence-locker-postgres
+    environment:
+      POSTGRES_DB: evidence_locker
+      POSTGRES_USER: evidence_locker
+      POSTGRES_PASSWORD: evidence_locker_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U evidence_locker -d evidence_locker"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - evidence-locker-network
+
+  # MinIO Object Storage
+  minio:
+    image: minio/minio:latest
+    container_name: evidence-locker-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: evidence_locker
+      MINIO_ROOT_PASSWORD: evidence_locker_password
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    networks:
+      - evidence-locker-network
+
+  # MinIO Client for bucket creation
+  minio-client:
+    image: minio/mc:latest
+    container_name: evidence-locker-minio-client
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set myminio http://minio:9000 evidence_locker evidence_locker_password;
+      /usr/bin/mc mb myminio/evidence --ignore-existing;
+      /usr/bin/mc policy set public myminio/evidence;
+      exit 0;
+      "
+    networks:
+      - evidence-locker-network
+
+  # Evidence Locker Application
+  evidence-locker:
+    build: .
+    container_name: evidence-locker-app
+    environment:
+      NODE_ENV: production
+      PORT: 4600
+      DATABASE_URL: postgresql://evidence_locker:evidence_locker_password@postgres:5432/evidence_locker
+      S3_ENDPOINT: http://minio:9000
+      S3_REGION: us-east-1
+      S3_BUCKET: evidence
+      S3_ACCESS_KEY: evidence_locker
+      S3_SECRET_KEY: evidence_locker_password
+      S3_FORCE_PATH_STYLE: "true"
+      PUBLIC_READ: "false"
+      MAX_UPLOAD_BYTES: 52428800
+      HMAC_APP_KEYS: "registry:registry-demo-key-12345,issuer-portal:issuer-portal-demo-key-67890,verifier-console:verifier-console-demo-key-abcde"
+      CORS_ALLOWLIST: "http://localhost:3000,http://localhost:3001"
+      IPFS_ENABLED: "false"
+      LOG_LEVEL: info
+    ports:
+      - "4600:4600"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+      minio-client:
+        condition: service_completed_successfully
+    volumes:
+      - ./storage:/app/storage
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:4600/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - evidence-locker-network
+
+  # Optional: IPFS Node (disabled by default)
+  ipfs:
+    image: ipfs/kubo:latest
+    container_name: evidence-locker-ipfs
+    environment:
+      IPFS_PROFILE: server
+    volumes:
+      - ipfs_data:/data/ipfs
+    ports:
+      - "4001:4001"
+      - "5001:5001"
+      - "8080:8080"
+    networks:
+      - evidence-locker-network
+    profiles:
+      - ipfs
+
+volumes:
+  postgres_data:
+    driver: local
+  minio_data:
+    driver: local
+  ipfs_data:
+    driver: local
+
+networks:
+  evidence-locker-network:
+    driver: bridge
